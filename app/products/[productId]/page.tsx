@@ -5,7 +5,6 @@ import ProductComponent from "@/app/components/ProductComponent";
 
 
 export default async function ProductDetail({ params }: { params: { productId: string } }) {
-  console.log('ProductsIdPage:', 'fetchProducts');
   const { productId } = await params;
   const products: Item[] = await fetchProducts();
   const product = products.find(p => p.id === productId)!;

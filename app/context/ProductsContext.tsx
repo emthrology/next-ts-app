@@ -16,7 +16,6 @@ export function ProductsProvider({ children }: { children: React.ReactNode }) {
   const [items, setItems] = useState<Item[]>([]);
 
   useEffect(() => {
-    console.log('ProductContext:', 'fetchProducts');
     fetchProducts().then(setItems);
   }, []);
 
