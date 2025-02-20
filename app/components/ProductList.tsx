@@ -8,6 +8,7 @@ import Link from "next/link";
 export default function ProductList({ products }: { products: Item[] }) {
   const { items, setItems } = useShoppingList();
 
+
   const handleAddToCart = async (product: Item) => {
     const params = {
       item: {...product},
@@ -19,15 +20,18 @@ export default function ProductList({ products }: { products: Item[] }) {
   };
 
   return (
-    <ul>
-      {products.map((product) => (
-        <li key={product.id}>
-          <Link href={`products/${product.id}`}>{product.name}</Link>
-          <p>{product.description}</p>
-          <p>가격: {product.price}원</p>
-          <button onClick={() => handleAddToCart(product)}>장바구니에 추가</button>
-        </li>
-      ))}
-    </ul>
+    <>
+      <ul>
+        {products.map((product) => (
+          <li key={product.id} className="flex flex-col max-w-[200px] border border-blue-300 p-4 m-2 rounded-lg ">
+            <Link href={`products/${product.id}`}>{product.name}</Link>
+            <p>{product.description}</p>
+            <p>가격: {product.price.toLocaleString()}원</p>
+            <button className="rounded-lg border border-black bg-blue-500 py-1 mt-1 text-white font-bold" onClick={() => handleAddToCart(product)}>장바구니에 추가</button>
+          </li>
+        ))}
+      </ul>
+    </>
+
   );
 }

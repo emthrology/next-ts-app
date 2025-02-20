@@ -15,7 +15,7 @@ export default function ProductComponent({ product }: { product: Item }) {
     alert(response.message);
   };
   return (
-    <div>
+    <div className='border border-black p-4 m-4 rounded-lg'>
       <h1>{product.name}</h1>
       <p>가격: ₩{product.price}</p>
       <p>{product.description}</p>
