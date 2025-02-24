@@ -4,6 +4,7 @@ import { Item } from "@/types";
 import { useShoppingList } from "../context/ShoppingListContext";
 import { addItem } from "../actions/shoppingListActions";
 import Link from "next/link";
+import Button from "./Button";
 
 export default function ProductList({ products }: { products: Item[] }) {
   const { items, setItems } = useShoppingList();
@@ -27,7 +28,12 @@ export default function ProductList({ products }: { products: Item[] }) {
             <Link href={`products/${product.id}`}>{product.name}</Link>
             <p>{product.description}</p>
             <p>가격: {product.price.toLocaleString()}원</p>
-            <button className="rounded-lg border border-black bg-blue-500 py-1 mt-1 text-white font-bold" onClick={() => handleAddToCart(product)}>장바구니에 추가</button>
+            {/* <button className="rounded-lg border border-black bg-blue-500 py-1 mt-1 text-white font-bold" onClick={() => handleAddToCart(product)}>장바구니에 추가</button> */}
+            <Button 
+              label='장바구니에 추가'
+              variant="primary"
+              onClick={() => handleAddToCart(product)}
+            />
           </li>
         ))}
       </ul>

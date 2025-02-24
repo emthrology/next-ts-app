@@ -4,6 +4,7 @@ import { Item } from "@/types";
 import { useShoppingList } from "../context/ShoppingListContext";
 import { removeItem } from "../actions/shoppingListActions";
 import { useMemo } from "react";
+import Button from "./Button";
 
 
 export default function ShoppingList({ carts } : { carts: Item[] }) {
@@ -27,7 +28,12 @@ export default function ShoppingList({ carts } : { carts: Item[] }) {
               <span>{item.name}</span>
               <span>{item.quantity ?? 1}개</span>
               <span>{item.price * (item.quantity ?? 1)}원</span>
-              <button className="rounded-lg border border-black bg-red-500 py-1 mt-1 text-white font-bold" onClick={() => handleRemove(item.id)}>삭제</button>
+              {/* <button className="rounded-lg border border-black bg-red-500 py-1 mt-1 text-white font-bold" onClick={() => handleRemove(item.id)}>삭제</button> */}
+              <Button 
+                label='삭제'
+                variant="danger"
+                onClick={() => handleRemove(item.id)}
+              />
             </div>
 
           </li>

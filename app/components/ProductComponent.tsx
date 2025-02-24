@@ -2,6 +2,7 @@
 
 import { Item } from '@/types'
 import { addItem } from "@/app/actions/shoppingListActions";
+import Button from './Button';
 
 
 export default function ProductComponent({ product }: { product: Item }) {
@@ -15,11 +16,16 @@ export default function ProductComponent({ product }: { product: Item }) {
     alert(response.message);
   };
   return (
-    <div className='border border-black p-4 m-4 rounded-lg'>
+    <div className="flex flex-col max-w-[200px] border border-blue-300 p-4 m-2 rounded-lg">
       <h1>{product.name}</h1>
-      <p>가격: ₩{product.price}</p>
       <p>{product.description}</p>
-      <button onClick={() => handleClick(product)}>장바구니에 추가</button>
+      <p>가격: ₩{product.price}</p>
+      {/* <button onClick={() => handleClick(product)}>장바구니에 추가</button> */}
+      <Button 
+        label='장바구니에 추가'
+        variant="primary"
+        onClick={() => handleClick(product)}
+      />
     </div>
   )
 }
