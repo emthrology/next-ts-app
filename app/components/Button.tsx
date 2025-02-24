@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 
 interface ButtonProps {
   label: string;
@@ -9,17 +9,23 @@ interface ButtonProps {
 
 // export default function Button({props} : {props: ButtonProps}) {
 // const Button: React.FC<ButtonProps> = ({ label, variant = 'primary', onClick, disabled = false }) => {
-export default function Button ({ label, onClick, variant = 'primary', disabled = false }: ButtonProps) {
+export default function Button({
+  label,
+  onClick,
+  variant = 'primary',
+  disabled = false,
+}: ButtonProps) {
   return (
-    <button 
+    <button
       className={`rounded-lg border border-black py-1 mt-1 text-white font-bold ${
-        variant == 'primary' 
-          ? 'bg-blue-500' 
-          : variant == 'secondary' 
-            ? 'bg-black' 
+        variant == 'primary'
+          ? 'bg-blue-500'
+          : variant == 'secondary'
+            ? 'bg-black'
             : 'bg-red-500'
-      }`} 
-      onClick={onClick}>
+      }`}
+      onClick={onClick}
+    >
       {label}
     </button>
   );

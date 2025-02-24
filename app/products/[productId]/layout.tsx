@@ -1,13 +1,14 @@
 import Link from 'next/link';
-import { ProductsProvider } from "../../context/ProductsContext";
+import { ProductsProvider } from '../../context/ProductsContext';
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
     <div>
-      <ProductsProvider>
-        {children}
-      </ProductsProvider>
+      <ProductsProvider>{children}</ProductsProvider>
     </div>
-
   );
 }

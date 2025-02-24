@@ -1,6 +1,6 @@
 // import AddItemForm from "../components/AddItemForm";
-import { fetchItems } from "../actions/shoppingListActions";
-import ShoppingList from "../components/ShoppingList";
+import { fetchItems } from '../actions/shoppingListActions';
+import ShoppingList from '../components/ShoppingList';
 
 export default async function Home() {
   const carts = await fetchItems();
@@ -8,7 +8,7 @@ export default async function Home() {
     <main>
       <h1>쇼핑 목록</h1>
       {/* <AddItemForm /> */}
-      <ShoppingList carts={carts}/>
+      <ShoppingList carts={carts} />
     </main>
   );
 }

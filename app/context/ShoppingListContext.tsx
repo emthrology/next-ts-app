@@ -1,17 +1,23 @@
-"use client";
+'use client';
 
-import { Item } from "@/types";
-import React, { createContext, useContext, useState, useEffect } from "react";
-import { fetchItems } from "../actions/shoppingListActions";
+import { Item } from '@/types';
+import React, { createContext, useContext, useState, useEffect } from 'react';
+import { fetchItems } from '../actions/shoppingListActions';
 
 type ShoppingListContextType = {
   items: Item[];
   setItems: React.Dispatch<React.SetStateAction<Item[]>>;
 };
 
-const ShoppingListContext = createContext<ShoppingListContextType | undefined>(undefined);
+const ShoppingListContext = createContext<ShoppingListContextType | undefined>(
+  undefined,
+);
 
-export function ShoppingListProvider({ children }: { children: React.ReactNode }) {
+export function ShoppingListProvider({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   const [items, setItems] = useState<Item[]>([]);
 
   useEffect(() => {
@@ -28,7 +34,9 @@ export function ShoppingListProvider({ children }: { children: React.ReactNode }
 export function useShoppingList() {
   const context = useContext(ShoppingListContext);
   if (context === undefined) {
-    throw new Error("useShoppingList must be used within a ShoppingListProvider");
+    throw new Error(
+      'useShoppingList must be used within a ShoppingListProvider',
+    );
   }
   return context;
 }

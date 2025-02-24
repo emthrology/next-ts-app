@@ -1,7 +1,7 @@
-"use server";
+'use server';
 import fs from 'fs';
 import path from 'path';
-import { revalidatePath } from "next/cache";
+import { revalidatePath } from 'next/cache';
 
 const dbPath = path.join(process.cwd(), 'db/db.json');
 
@@ -39,23 +39,29 @@ interface Item {
   description: string;
 }
 
-export async function addItem({ item, validatePath }: { item: Item, validatePath: string }) {
+export async function addItem({
+  item,
+  validatePath,
+}: {
+  item: Item;
+  validatePath: string;
+}) {
   // 여기서 데이터베이스에 아이템을 추가하는 로직을 구현합니다.
   // 데이터베이스 읽기
   const db = await readDatabase();
-  
+
   //shoppingList에 중복된 id가 있으면 추가하지 않음
-  if (db.shoppingList.some((i: { id: string; }) => i.id === item.id)) {
+  if (db.shoppingList.some((i: { id: string }) => i.id === item.id)) {
     const res = {
       success: false,
-      message: "이미 추가된 상품입니다.",
-    }
+      message: '이미 추가된 상품입니다.',
+    };
     return res;
   }
 
   // 새로운 아이템 추가
   db.shoppingList.push(item);
-  
+
   // 데이터베이스에 다시 쓰기
   await writeDatabase(db);
 
@@ -79,9 +85,9 @@ export async function addItem({ item, validatePath }: { item: Item, validatePath
   revalidatePath(`/${validatePath}`);
   const res = {
     success: true,
-    message: "상품이 추가되었습니다.",
-  }
-  console.log(res, 111)
+    message: '상품이 추가되었습니다.',
+  };
+  console.log(res, 111);
   return res;
 }
 
@@ -89,27 +95,28 @@ export async function removeItem(id: string) {
   // 여기서 데이터베이스에서 아이템을 제거하는 로직을 구현합니다.
   // 데이터베이스 읽기
   const db = await readDatabase();
-  
+
   // id에 해당하는 아이템 제거
-  db.shoppingList = db.shoppingList.filter((item: { id: string; }) => item.id !== id);
+  db.shoppingList = db.shoppingList.filter(
+    (item: { id: string }) => item.id !== id,
+  );
 
   // 데이터베이스에 다시 쓰기
   await writeDatabase(db);
-  
-  revalidatePath("/");
+
+  revalidatePath('/');
 }
 
 export async function fetchItems() {
   // 여기서 데이터베이스에서 아이템 목록을 가져오는 로직을 구현합니다.
-  await new Promise((resolve) => setTimeout(resolve, 2000));
+  await new Promise(resolve => setTimeout(resolve, 2000));
   // 데이터베이스 읽기
   const db = await readDatabase();
   return db.shoppingList;
 }
-  // // 예시를 위해 하드코딩된 데이터를 반환합니다.
-  // return [
-  //   { id: "1", name: "우유", price: 1000, description: "우유 설명" },
-  //   { id: "2", name: "빵", price: 2000, description: "빵 설명" },
-  //   { id: "3", name: "계란", price: 3000, description: "계란 설명" },
-  // ];
-
+// // 예시를 위해 하드코딩된 데이터를 반환합니다.
+// return [
+//   { id: "1", name: "우유", price: 1000, description: "우유 설명" },
+//   { id: "2", name: "빵", price: 2000, description: "빵 설명" },
+//   { id: "3", name: "계란", price: 3000, description: "계란 설명" },
+// ];
