@@ -1,7 +1,9 @@
+import React from 'react';
 import Link from 'next/link';
 import './globals.css';
 import { ShoppingListProvider } from './context/ShoppingListContext';
-
+import { ProductsProvider } from './context/ProductsContext';
+import CombinedProvider from './components/CombinedProvider';
 export default function RootLayout({
   children,
 }: {
@@ -10,7 +12,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="p-4">
-        <ShoppingListProvider>
+        <CombinedProvider>
           <nav>
             <Link
               href="/products"
@@ -27,7 +29,7 @@ export default function RootLayout({
           </nav>
           <hr />
           {children}
-        </ShoppingListProvider>
+        </CombinedProvider>
       </body>
     </html>
   );
